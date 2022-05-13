@@ -63,6 +63,8 @@ int is_valid(Node* n){
             }
             else return 0;
           }
+        }
+    }
 
   //columnas
     for ( int i = 0 ; i < 9 ; i++)
