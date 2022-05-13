@@ -76,3 +76,13 @@ Fri May 13 01:19:29 UTC 2022:
  tests:  10|0
 total_score: 70/70
 a1c1494
+Fri May 13 01:30:47 UTC 2022: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:0:
+sudoku.c: In function ‘DFS’:
+sudoku.c:182:3: error: expected ‘;’ before ‘}’ token
+   }
+   ^
+Compilation failed
+daeaa68
