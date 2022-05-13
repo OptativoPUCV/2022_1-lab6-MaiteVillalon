@@ -43,8 +43,50 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
+int is_valid(Node* n){  
+  int arr[10] = {0};
+  int arr2[10] = {0};
+  
 
+  //filas
+  for ( int i = 0 ; i < 9 ; i++)
+    {
+      for (int j = 0 ; i < 9 ; i ++ )
+        {
+          int d = n->sudo[i][j];
+          if (arr[d] == 0)
+          {
+            arr[d] = 1;
+          }
+          else return 0;
+        }
+    }
+
+  //columnas
+    for ( int i = 0 ; i < 9 ; i++)
+    {
+      for (int j = 0 ; i < 9 ; i ++ )
+        {
+          int d = n->sudo[j][i];
+          if (arr2[d] == 0)
+          {
+            arr2[d] = 1;
+          }
+          else return 0;
+        }
+    }
+
+  //submatrices
+  int k=3,p; 
+  for(p=0;p<9;p++)
+  {
+    int i=3*(k/3) + (p/3) ;
+    int j=3*(k%3) + (p%3) ;
+    printf("%d ",n->sudo[i][j]);
+    if(p%3 == 2) printf("\n");
+  }
+  
+  
     return 1;
 }
 
