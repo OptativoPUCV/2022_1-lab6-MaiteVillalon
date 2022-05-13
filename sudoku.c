@@ -50,7 +50,7 @@ int is_valid(Node* n){
   //filas
   for ( int i = 0 ; i < 9 ; i++)
     {
-      int arr[10] = {}; 
+      int arr[10] = {0}; 
       for (int j = 0 ; i < 9 ; i ++ )
         {
           int d = n->sudo[i][j];
@@ -69,7 +69,7 @@ int is_valid(Node* n){
   //columnas
     for ( int i = 0 ; i < 9 ; i++)
     {
-      int arr[10] = {}; 
+      int arr[10] = {0}; 
       for (int j = 0 ; i < 9 ; i ++ )
         {
           int d = n->sudo[j][i];
@@ -88,7 +88,7 @@ int is_valid(Node* n){
 
   for (int k = 0 ; k < 3 ; k++)
   {
-    int arr[10] = {};
+    int arr[10] = {0};
     for(int p=0;p<9;p++)
     {
       int i=3*(k/3) + (p/3) ;
