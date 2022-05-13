@@ -44,79 +44,98 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){  
-  int arr[10] = {0};
-  int arr2[10] = {0};
+
   
 
   //filas
   for ( int i = 0 ; i < 9 ; i++)
     {
+      int arr[10] = {}; 
       for (int j = 0 ; i < 9 ; i ++ )
         {
           int d = n->sudo[i][j];
-          if (arr[d] == 0)
+          if (d != 0)
           {
-            arr[d] = 1;
+            if (arr[d] == 0)
+            {
+              arr[d] = 1;
+              
+            }
+            else return 0;
           }
-          else return 0;
-        }
-    }
 
   //columnas
     for ( int i = 0 ; i < 9 ; i++)
     {
+      int arr[10] = {}; 
       for (int j = 0 ; i < 9 ; i ++ )
         {
           int d = n->sudo[j][i];
-          if (arr2[d] == 0)
+          if (d != 0)
           {
-            arr2[d] = 1;
+            if (arr[d] == 0)
+            {
+              arr[d] = 1;
+            }
+            else return 0;
           }
-          else return 0;
         }
     }
 
-  //submatrices
-  int k=3,p; 
-  for(p=0;p<9;p++)
+  //submatrices 
+
+  for (int k = 0 ; k < 3 ; k++)
   {
-    int i=3*(k/3) + (p/3) ;
-    int j=3*(k%3) + (p%3) ;
-    printf("%d ",n->sudo[i][j]);
-    if(p%3 == 2) printf("\n");
+    int arr[10] = {};
+    for(int p=0;p<9;p++)
+    {
+      int i=3*(k/3) + (p/3) ;
+      int j=3*(k%3) + (p%3) ;
+      printf("%d ",n->sudo[i][j]);
+      if(p%3 == 2) printf("\n");
+
+      int d = n->sudo[j][i];
+      if (d != 0)
+      {
+        if (arr[d] == 0)
+        {
+          arr[d] = 1;
+        }
+        else return 0;
+      }
+    }
   }
+
   
-  
-    return 1;
+  return 1;
 }
 
 
 List* get_adj_nodes(Node* n){
-    List* list=createList();
-
-    int i,j;
-     for(i=0;i<9;i++)
-    {
-    int numero = 1;
-     for(j=0;j<9;j++)
-     {
-        if(n->sudo[i][j] == 0)
+  List* list=createList();
+  int i,j;
+   for(i=0;i<9;i++)
+  {
+  int numero = 1;
+   for(j=0;j<9;j++)
+   {
+      if(n->sudo[i][j] == 0)
+      {
+        for(numero = 1 ; numero < 10 ; numero++)
         {
-          for(numero = 1 ; numero < 10 ; numero++)
+          n->sudo[i][j] = numero;
+          if(is_valid(n))
           {
-            n->sudo[i][j] = numero;
-            if(is_valid(n))
-            {
-              Node *adj_n = copy(n);
-              pushBack(list, adj_n);
-            }
+            Node *adj_n = copy(n);
+            pushBack(list, adj_n);
           }
-          n->sudo[i][j] = 0;
-          return list;
         }
+        n->sudo[i][j] = 0;
+        return list;
       }
     }
-    return list;
+  }
+  return list;
 }
 
 
